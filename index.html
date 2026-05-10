@@ -123,6 +123,43 @@
       font-weight: 300;
     }
 
+    .about {
+      padding: 40px 0 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-desc {
+      font-size: 15px;
+      color: var(--text-mid);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 24px;
+      max-width: 680px;
+    }
+
+    .features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .features li {
+      font-size: 14px;
+      color: var(--text-mid);
+      font-weight: 400;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .features li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-size: 13px;
+    }
+
     .docs {
       padding: 56px 0 80px;
     }
@@ -278,11 +315,22 @@
 
   <section class="hero">
     <div>
-      <div class="hero-tag">Shopify App</div>
+      <div class="hero-tag">Free Shopify App</div>
       <h1>Pickzilla</h1>
-      <p>Pickzilla helps merchants generate pick lists from their orders. Select orders, review aggregated line items by SKU, and save or print a clean pick list in seconds.</p>
+      <p>Generate pick lists from your orders in seconds. Every SKU, quantity, and weight in one clean list.</p>
     </div>
     <img src="pickzilla-icon.png" alt="Pickzilla app icon" class="hero-icon"/>
+  </section>
+
+  <section class="about">
+    <p class="about-desc">Pickzilla aggregates order line items by SKU into a clean pick list. Select orders from the Orders page, review combined quantities, and save, print, or download as CSV. Saved pick lists are stored with a timestamp and order count for reference. Products with weights display per-SKU totals in g, kg, oz, or lb. No setup required. Works with any catalog including variants.</p>
+    <ul class="features">
+      <li>Generate pick lists from a range of orders in one click</li>
+      <li>Items aggregated by SKU with combined quantities</li>
+      <li>Save, print, or download pick lists as CSV</li>
+      <li>Display weights per SKU in g, kg, oz, or lb</li>
+      <li>Review pick list history with timestamps and order counts</li>
+    </ul>
   </section>
 
   <section class="docs">
@@ -342,7 +390,7 @@
           <p>To the maximum extent permitted by law, Daniel Brainich shall not be liable for any indirect, incidental, or consequential damages arising from your use of Pickzilla.</p>
 
           <h3>Billing</h3>
-          <p>Pickzilla is billed at $4.50/month after a 7-day free trial, managed through Shopify's billing system. Cancellation takes effect at the end of the current billing period.</p>
+          <p>Pickzilla is free to install and use. There are no subscription fees or charges associated with the app.</p>
 
           <h3>Changes</h3>
           <p>We reserve the right to modify these terms at any time. Continued use of the app constitutes acceptance of updated terms.</p>

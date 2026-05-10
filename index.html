@@ -1,242 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pickzilla — Shopify Pick List App</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" href="favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Inter Tight', sans-serif;
-      color: #1a1a1a;
-      background: #fff;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #2d7a4f;
+      --green-dark: #1a3d2b;
+      --green-light: #edf7f1;
+      --green-border: #c3e0cf;
+      --text: #111;
+      --text-mid: #444;
+      --text-muted: #888;
+      --border: #e5e5e5;
+      --bg: #fff;
+      --bg-soft: #fafafa;
     }
 
-    .page-wrap {
-      max-width: 900px;
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 860px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--green-dark);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-brand-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+    }
+
+    .nav-link {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-link:hover { color: var(--green); }
+
     .hero {
-      padding: 72px 0 56px;
+      padding: 64px 0 56px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 18px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: var(--green-light);
+      border: 1px solid var(--green-border);
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 16px;
     }
 
     .hero h1 {
-      font-size: 2.75rem;
-      font-weight: 700;
-      margin-bottom: 0.25rem;
-    }
-
-    .hero .subtitle {
-      font-size: 1rem;
-      color: #6c757d;
-      font-weight: 500;
-      margin-bottom: 1rem;
-      letter-spacing: 0.02em;
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 14px;
     }
 
     .hero p {
-      font-size: 1rem;
-      color: #444;
-      line-height: 1.8;
-      margin-bottom: 0;
+      font-size: 15px;
+      color: var(--text-mid);
+      line-height: 1.75;
+      max-width: 520px;
+      font-weight: 300;
     }
 
-    .hero-img {
-      max-width: 300px;
-      width: 100%;
-      border-radius: 20px;
+    .docs {
+      padding: 56px 0 80px;
     }
 
-    @media (max-width: 767px) {
-      .hero-img {
-        display: block;
-        margin: 0;
-      }
-      .hero-img-col {
-        text-align: left !important;
-      }
+    .docs-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 24px;
     }
 
-    .docs-section {
-      padding: 48px 0 64px;
-    }
-
-    .accordion-button {
-      font-size: 1rem;
-      background-color: #7FC994;
-      color: #fff;
-    }
-
-    .accordion-button:not(.collapsed) {
-      background-color: #7FC994;
-      color: #fff;
-      box-shadow: none;
-    }
-
-    .accordion-button:focus {
-      box-shadow: none;
-    }
-
-    .accordion-button::after {
-      filter: brightness(0) invert(1);
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
     .accordion-item {
-      border: 1px solid #e8e8e8;
-      margin-bottom: 0.75rem;
-      border-radius: 8px !important;
+      border: 1px solid var(--border);
+      border-radius: 10px;
       overflow: hidden;
     }
 
-    .accordion-body h3 {
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #333;
-      margin-top: 1.5rem;
-      margin-bottom: 0.4rem;
+    .accordion-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px;
+      background: var(--bg);
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      text-align: left;
+      transition: background 0.15s;
     }
 
-    .accordion-body h3:first-child {
-      margin-top: 0;
+    .accordion-trigger:hover { background: var(--bg-soft); }
+    .accordion-trigger.open { background: var(--bg-soft); }
+
+    .accordion-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
     }
 
-    .accordion-body p,
-    .accordion-body li {
-      color: #444;
-      line-height: 1.8;
-      font-size: 0.95rem;
+    .accordion-trigger.open .accordion-icon { transform: rotate(45deg); }
+
+    .accordion-body {
+      display: none;
+      padding: 0 22px 28px;
+      border-top: 1px solid var(--border);
     }
+
+    .accordion-body.open { display: block; }
 
     .accordion-body .updated {
-      color: #999;
-      font-size: 0.8rem;
-      margin-bottom: 1.25rem;
+      font-size: 12px;
+      color: var(--text-muted);
+      padding: 16px 0 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
     }
 
+    .accordion-body h3 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 28px 0 8px;
+    }
+
+    .accordion-body h3:first-of-type { margin-top: 0; }
+
+    .accordion-body p {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.75;
+      margin-bottom: 10px;
+      font-weight: 300;
+    }
+
+    .accordion-body ul {
+      padding-left: 18px;
+      margin-bottom: 10px;
+    }
+
+    .accordion-body li {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 4px;
+    }
+
+    .accordion-body a {
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .accordion-body a:hover { text-decoration: underline; }
+
     footer {
-      padding: 32px 0;
-      text-align: center;
-      color: #aaa;
-      font-size: 0.875rem;
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    footer span {
+      font-size: 13px;
+      color: var(--text-muted);
     }
 
     footer a {
-      color: #2d7a4f;
+      font-size: 13px;
+      color: var(--green);
       text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-icon { width: 64px; height: 64px; }
+      .hero h1 { font-size: 28px; }
+      footer { flex-direction: column; gap: 10px; }
     }
   </style>
 </head>
-
 <body>
 
-  <div class="page-wrap">
+<div class="wrap">
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="row align-items-center g-5">
-        <div class="col-md-7">
-          <h1>Pickzilla</h1>
-          <p class="subtitle">Shopify App</p>
-          <p>
-            Pickzilla is a Shopify app that helps merchants generate pick lists from their orders.
-            Select orders, review aggregated line items, and save or print a pick list in seconds.
-          </p>
-        </div>
-        <div class="col-md-5 text-md-end hero-img-col">
-          <img src="pickzilla-icon.png" alt="Pickzilla mascot" class="hero-img" />
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        <div class="nav-brand-dot"></div>
+        Pickzilla
+      </a>
+      <a href="https://apps.shopify.com/pickzilla" class="nav-link">Install on Shopify →</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <div class="hero-tag">Shopify App</div>
+      <h1>Pickzilla</h1>
+      <p>Pickzilla helps merchants generate pick lists from their orders. Select orders, review aggregated line items by SKU, and save or print a clean pick list in seconds.</p>
+    </div>
+    <img src="pickzilla-icon.png" alt="Pickzilla app icon" class="hero-icon"/>
+  </section>
+
+  <section class="docs">
+    <div class="docs-label">Documentation</div>
+
+    <div class="accordion">
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggle(this)">
+          Privacy Policy
+          <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </button>
+        <div class="accordion-body">
+          <p class="updated">Last updated: April 12, 2026</p>
+
+          <h3>Overview</h3>
+          <p>Pickzilla ("the App") is built and operated by Daniel Brainich. This privacy policy explains what data we collect and how we use it.</p>
+
+          <h3>Data We Collect</h3>
+          <p>When you install Pickzilla, we access the following data from your Shopify store:</p>
+          <ul>
+            <li>Order data (order IDs, line items, quantities, product weights)</li>
+            <li>Product data (SKUs, variant information)</li>
+          </ul>
+          <p>We do not collect personal customer data beyond what is necessary to generate pick lists.</p>
+
+          <h3>How We Use Your Data</h3>
+          <p>Order and product data is used solely to generate and store pick lists within the app. Pick list data is stored securely and is never sold or shared with third parties.</p>
+
+          <h3>Data Retention</h3>
+          <p>Pick lists are stored until you delete them or until your store uninstalls the app, at which point your data is deleted.</p>
+
+          <h3>Contact</h3>
+          <p>Questions? Email <a href="mailto:pickzilla.support@gmail.com">pickzilla.support@gmail.com</a></p>
         </div>
       </div>
-    </section>
 
-    <!-- Docs Accordions -->
-    <section class="docs-section">
-      <div class="accordion" id="docsAccordion">
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggle(this)">
+          Terms of Service
+          <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </button>
+        <div class="accordion-body">
+          <p class="updated">Last updated: April 12, 2026</p>
 
-        <!-- Privacy Policy -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#privacy" aria-expanded="false" aria-controls="privacy">
-              Privacy Policy
-            </button>
-          </h2>
-          <div id="privacy" class="accordion-collapse collapse" data-bs-parent="#docsAccordion">
-            <div class="accordion-body">
-              <p class="updated">Last updated: April 12, 2026</p>
+          <h3>Acceptance</h3>
+          <p>By installing Pickzilla you agree to these terms.</p>
 
-              <h3>Overview</h3>
-              <p>Pickzilla ("the App") is built and operated by Daniel Brainich. This privacy policy explains what data we collect and how we use it.</p>
+          <h3>The Service</h3>
+          <p>Pickzilla is provided "as is" without warranty of any kind, express or implied. We do not guarantee uninterrupted or error-free service.</p>
 
-              <h3>Data We Collect</h3>
-              <p>When you install Pickzilla, we access the following data from your Shopify store:</p>
-              <ul>
-                <li>Order data (order IDs, line items, quantities, product weights)</li>
-                <li>Product data (SKUs, variant information)</li>
-              </ul>
-              <p>We do not collect personal customer data beyond what is necessary to generate pick lists.</p>
+          <h3>Limitation of Liability</h3>
+          <p>To the maximum extent permitted by law, Daniel Brainich shall not be liable for any indirect, incidental, or consequential damages arising from your use of Pickzilla.</p>
 
-              <h3>How We Use Your Data</h3>
-              <p>Order and product data is used solely to generate and store pick lists within the app. Pick list data is stored securely in our database and is never sold or shared with third parties.</p>
+          <h3>Billing</h3>
+          <p>Pickzilla is billed at $4.50/month after a 7-day free trial, managed through Shopify's billing system. Cancellation takes effect at the end of the current billing period.</p>
 
-              <h3>Data Retention</h3>
-              <p>Pick lists are stored until you delete them or until your store uninstalls the app, at which point your data is deleted.</p>
+          <h3>Changes</h3>
+          <p>We reserve the right to modify these terms at any time. Continued use of the app constitutes acceptance of updated terms.</p>
 
-              <h3>Contact</h3>
-              <p>Questions? Email us at <a href="mailto:pickzilla.support@gmail.com">pickzilla.support@gmail.com</a></p>
-            </div>
-          </div>
+          <h3>Contact</h3>
+          <p>Questions? Email <a href="mailto:pickzilla.support@gmail.com">pickzilla.support@gmail.com</a></p>
         </div>
-
-        <!-- Terms of Service -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#terms" aria-expanded="false" aria-controls="terms">
-              Terms of Service
-            </button>
-          </h2>
-          <div id="terms" class="accordion-collapse collapse" data-bs-parent="#docsAccordion">
-            <div class="accordion-body">
-              <p class="updated">Last updated: April 12, 2026</p>
-
-              <h3>Acceptance</h3>
-              <p>By installing Pickzilla you agree to these terms.</p>
-
-              <h3>The Service</h3>
-              <p>Pickzilla is provided "as is" without warranty of any kind, express or implied. We do not guarantee uninterrupted or error-free service.</p>
-
-              <h3>Limitation of Liability</h3>
-              <p>To the maximum extent permitted by law, Daniel Brainich shall not be liable for any indirect, incidental, or consequential damages arising from your use of Pickzilla.</p>
-
-              <h3>Billing</h3>
-              <p>Pickzilla is billed at $4.50/month after a 7-day free trial, managed through Shopify's billing system. Cancellation takes effect at the end of the current billing period.</p>
-
-              <h3>Changes</h3>
-              <p>We reserve the right to modify these terms at any time. Continued use of the app constitutes acceptance of updated terms.</p>
-
-              <h3>Contact</h3>
-              <p>Questions? Email us at <a href="mailto:pickzilla.support@gmail.com">pickzilla.support@gmail.com</a></p>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </section>
 
-    <footer>
-      &copy; 2026 Pickzilla
-    </footer>
+    </div>
+  </section>
 
-  </div>
+  <footer>
+    <span>© 2026 Pickzilla · Daniel Brainich</span>
+    <a href="mailto:pickzilla.support@gmail.com">pickzilla.support@gmail.com</a>
+  </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+
+<script>
+  function toggle(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    document.querySelectorAll('.accordion-trigger').forEach(b => {
+      b.classList.remove('open');
+      b.nextElementSibling.classList.remove('open');
+    });
+    if (!isOpen) {
+      btn.classList.add('open');
+      body.classList.add('open');
+    }
+  }
+</script>
+
 </body>
-
 </html>

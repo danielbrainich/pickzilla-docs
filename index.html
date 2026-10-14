@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pickzilla — Shopify Pick List App</title>
-  <link rel="icon" href="favicon.ico"/>
+  <link rel="icon" href="favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       --green: #2d7a4f;
@@ -73,7 +80,9 @@
       font-weight: 500;
     }
 
-    .nav-link:hover { color: var(--green); }
+    .nav-link:hover {
+      color: var(--green);
+    }
 
     .hero {
       padding: 64px 0 56px;
@@ -202,8 +211,13 @@
       transition: background 0.15s;
     }
 
-    .accordion-trigger:hover { background: var(--bg-soft); }
-    .accordion-trigger.open { background: var(--bg-soft); }
+    .accordion-trigger:hover {
+      background: var(--bg-soft);
+    }
+
+    .accordion-trigger.open {
+      background: var(--bg-soft);
+    }
 
     .accordion-icon {
       width: 20px;
@@ -213,7 +227,9 @@
       transition: transform 0.2s ease;
     }
 
-    .accordion-trigger.open .accordion-icon { transform: rotate(45deg); }
+    .accordion-trigger.open .accordion-icon {
+      transform: rotate(45deg);
+    }
 
     .accordion-body {
       display: none;
@@ -221,7 +237,9 @@
       border-top: 1px solid var(--border);
     }
 
-    .accordion-body.open { display: block; }
+    .accordion-body.open {
+      display: block;
+    }
 
     .accordion-body .updated {
       font-size: 12px;
@@ -240,7 +258,9 @@
       margin: 28px 0 8px;
     }
 
-    .accordion-body h3:first-of-type { margin-top: 0; }
+    .accordion-body h3:first-of-type {
+      margin-top: 0;
+    }
 
     .accordion-body p {
       font-size: 14px;
@@ -268,7 +288,9 @@
       text-decoration: none;
     }
 
-    .accordion-body a:hover { text-decoration: underline; }
+    .accordion-body a:hover {
+      text-decoration: underline;
+    }
 
     footer {
       border-top: 1px solid var(--border);
@@ -289,141 +311,190 @@
       text-decoration: none;
     }
 
-    footer a:hover { text-decoration: underline; }
+    footer a:hover {
+      text-decoration: underline;
+    }
 
     @media (max-width: 600px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-icon { width: 64px; height: 64px; }
-      .hero h1 { font-size: 28px; }
-      footer { flex-direction: column; gap: 10px; }
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-icon {
+        width: 64px;
+        height: 64px;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<div class="wrap">
+  <div class="wrap">
 
-  <nav>
-    <div class="nav-inner">
-      <div class="nav-brand">
-        <div class="nav-brand-dot"></div>
-        Pickzilla
-      </div>
-      <a href="https://apps.shopify.com/pickzilla" class="nav-link">Install on Shopify →</a>
-    </div>
-  </nav>
-
-  <section class="hero">
-    <div>
-      <div class="hero-tag">Free Shopify App</div>
-      <h1>Pickzilla</h1>
-      <p>Generate pick lists from your orders in seconds. Every SKU, quantity, and weight in one clean list.</p>
-    </div>
-    <img src="pickzilla-icon.png" alt="Pickzilla app icon" class="hero-icon"/>
-  </section>
-
-  <section class="about">
-    <p class="about-desc">Pickzilla aggregates order line items by SKU into a clean pick list. Select orders from the Orders page, review combined quantities, and save, print, or download as CSV. Saved pick lists are stored with a timestamp and order count for reference. Products with weights display per-SKU totals in g, kg, oz, or lb. No setup required. Works with any catalog including variants.</p>
-    <ul class="features">
-      <li>Generate pick lists from a range of orders in one click</li>
-      <li>Items aggregated by SKU with combined quantities</li>
-      <li>Save, print, or download pick lists as CSV</li>
-      <li>Display weights per SKU in g, kg, oz, or lb</li>
-      <li>Review pick list history with timestamps and order counts</li>
-    </ul>
-  </section>
-
-  <section class="docs">
-    <div class="docs-label">Documentation</div>
-
-    <div class="accordion">
-
-      <div class="accordion-item">
-        <button class="accordion-trigger" onclick="toggle(this)">
-          Privacy Policy
-          <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-          </svg>
-        </button>
-        <div class="accordion-body">
-          <p class="updated">Last updated: April 12, 2026</p>
-
-          <h3>Overview</h3>
-          <p>Pickzilla ("the App") is built and operated by Daniel Brainich. This privacy policy explains what data we collect and how we use it.</p>
-
-          <h3>Data We Collect</h3>
-          <p>When you install Pickzilla, we access the following data from your Shopify store:</p>
-          <ul>
-            <li>Order data (order IDs, line items, quantities, product weights)</li>
-            <li>Product data (SKUs, variant information)</li>
-          </ul>
-          <p>We do not collect personal customer data beyond what is necessary to generate pick lists.</p>
-
-          <h3>How We Use Your Data</h3>
-          <p>Order and product data is used solely to generate and store pick lists within the app. Pick list data is stored securely and is never sold or shared with third parties.</p>
-
-          <h3>Data Retention</h3>
-          <p>Pick lists are stored until you delete them or until your store uninstalls the app, at which point your data is deleted.</p>
-
-          <h3>Contact</h3>
-          <p>Questions? Email <a href="mailto:pickzilla.support@gmail.com">pickzilla.support@gmail.com</a></p>
+    <nav>
+      <div class="nav-inner">
+        <div class="nav-brand">
+          <div class="nav-brand-dot"></div>
+          Pickzilla
         </div>
+        <a href="https://apps.shopify.com/pickzilla" class="nav-link">Install on Shopify →</a>
       </div>
+    </nav>
 
-      <div class="accordion-item">
-        <button class="accordion-trigger" onclick="toggle(this)">
-          Terms of Service
-          <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-          </svg>
-        </button>
-        <div class="accordion-body">
-          <p class="updated">Last updated: April 12, 2026</p>
+    <section class="hero">
+      <div>
+        <div class="hero-tag">Free Shopify App</div>
+        <h1>Pickzilla</h1>
+        <p>Generate pick lists from your orders in seconds. Every SKU, quantity, and weight in one clean list.</p>
+      </div>
+      <img src="pickzilla-icon.png" alt="Pickzilla app icon" class="hero-icon" />
+    </section>
 
-          <h3>Acceptance</h3>
-          <p>By installing Pickzilla you agree to these terms.</p>
+    <section class="about">
+      <p class="about-desc">Pickzilla aggregates order line items by SKU into a clean pick list. Select orders from the
+        Orders page, review combined quantities, and save, print, or download as CSV. Saved pick lists are stored with a
+        timestamp and order count for reference. Products with weights display per-SKU totals in g, kg, oz, or lb. No
+        setup required. Works with any catalog including variants.</p>
+      <ul class="features">
+        <li>Generate pick lists from a range of orders in one click</li>
+        <li>Items aggregated by SKU with combined quantities</li>
+        <li>Save, print, or download pick lists as CSV</li>
+        <li>Display weights per SKU in g, kg, oz, or lb</li>
+        <li>Review pick list history with timestamps and order counts</li>
+      </ul>
+    </section>
 
-          <h3>The Service</h3>
-          <p>Pickzilla is provided "as is" without warranty of any kind, express or implied. We do not guarantee uninterrupted or error-free service.</p>
+    <section class="docs">
+      <div class="docs-label">Documentation</div>
 
-          <h3>Limitation of Liability</h3>
-          <p>To the maximum extent permitted by law, Daniel Brainich shall not be liable for any indirect, incidental, or consequential damages arising from your use of Pickzilla.</p>
+      <div class="accordion">
 
-          <h3>Billing</h3>
-          <p>Pickzilla is free to install and use. There are no subscription fees or charges associated with the app.</p>
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggle(this)">
+            Privacy Policy
+            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
+          <div class="accordion-body">
+            <p class="updated">Last updated: October 13, 2026</p>
 
-          <h3>Changes</h3>
-          <p>We reserve the right to modify these terms at any time. Continued use of the app constitutes acceptance of updated terms.</p>
+            <h3>Overview</h3>
+            <p>Pickzilla ("the App") is built and operated by Daniel Brainich. This privacy policy explains what data we
+              collect and how we use it.</p>
 
-          <h3>Contact</h3>
-          <p>Questions? Email <a href="mailto:pickzilla.support@gmail.com">pickzilla.support@gmail.com</a></p>
+            <h3>Data We Access From Your Store</h3>
+            <p>When you install Pickzilla, we access the following data from your Shopify store in order to generate
+              pick lists:</p>
+            <ul>
+              <li>Order data (order IDs, line items, quantities, product weights)</li>
+              <li>Product data (SKUs, variant information)</li>
+            </ul>
+            <p>We do not collect personal customer data beyond what is necessary to generate pick lists.</p>
+
+            <h3>Data We Store</h3>
+            <ul>
+              <li>Your shop's domain (for example, yourstore.myshopify.com)</li>
+              <li>Pick lists you save (SKUs, quantities, timestamps, order counts)</li>
+              <li>Usage events: simple counts of actions such as opening the app, generating a pick list, saving,
+                printing, or downloading a CSV. These contain no customer, order, or product details.</li>
+              <li>The time you uninstalled the app</li>
+              <li>Feedback you choose to send us, including an optional email address if you provide one</li>
+            </ul>
+
+            <h3>How We Use Your Data</h3>
+            <p>Order and product data is used solely to generate and store pick lists within the app. Usage events help
+              us understand which features are used so we can improve the app. Feedback is used to respond to you and
+              improve the app. We do not sell your data or share it with third parties, and we do not use third-party
+              analytics services.</p>
+
+            <h3>Hosting</h3>
+            <p>Data is stored in a database hosted on Railway (railway.com).</p>
+
+            <h3>Data Retention and Deletion</h3>
+            <p>Pick lists are stored until you delete them. When you uninstall the app, Shopify notifies us and, within
+              approximately 48 hours, we delete all data associated with your store, including pick lists, usage events,
+              uninstall records, and feedback.</p>
+
+            <h3>Contact</h3>
+            <p>Questions or deletion requests? Email <a
+                href="mailto:pickzilla.support@gmail.com">pickzilla.support@gmail.com</a></p>
+          </div>
         </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggle(this)">
+            Terms of Service
+            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
+          <div class="accordion-body">
+            <p class="updated">Last updated: April 12, 2026</p>
+
+            <h3>Acceptance</h3>
+            <p>By installing Pickzilla you agree to these terms.</p>
+
+            <h3>The Service</h3>
+            <p>Pickzilla is provided "as is" without warranty of any kind, express or implied. We do not guarantee
+              uninterrupted or error-free service.</p>
+
+            <h3>Limitation of Liability</h3>
+            <p>To the maximum extent permitted by law, Daniel Brainich shall not be liable for any indirect, incidental,
+              or consequential damages arising from your use of Pickzilla.</p>
+
+            <h3>Billing</h3>
+            <p>Pickzilla is free to install and use. There are no subscription fees or charges associated with the app.
+            </p>
+
+            <h3>Changes</h3>
+            <p>We reserve the right to modify these terms at any time. Continued use of the app constitutes acceptance
+              of updated terms.</p>
+
+            <h3>Contact</h3>
+            <p>Questions? Email <a href="mailto:pickzilla.support@gmail.com">pickzilla.support@gmail.com</a></p>
+          </div>
+        </div>
+
       </div>
+    </section>
 
-    </div>
-  </section>
+    <footer>
+      <span>© 2026 Pickzilla · Daniel Brainich</span>
+      <a href="mailto:pickzilla.support@gmail.com">pickzilla.support@gmail.com</a>
+    </footer>
 
-  <footer>
-    <span>© 2026 Pickzilla · Daniel Brainich</span>
-    <a href="mailto:pickzilla.support@gmail.com">pickzilla.support@gmail.com</a>
-  </footer>
+  </div>
 
-</div>
-
-<script>
-  function toggle(btn) {
-    const body = btn.nextElementSibling;
-    const isOpen = btn.classList.contains('open');
-    document.querySelectorAll('.accordion-trigger').forEach(b => {
-      b.classList.remove('open');
-      b.nextElementSibling.classList.remove('open');
-    });
-    if (!isOpen) {
-      btn.classList.add('open');
-      body.classList.add('open');
+  <script>
+    function toggle(btn) {
+      const body = btn.nextElementSibling;
+      const isOpen = btn.classList.contains('open');
+      document.querySelectorAll('.accordion-trigger').forEach(b => {
+        b.classList.remove('open');
+        b.nextElementSibling.classList.remove('open');
+      });
+      if (!isOpen) {
+        btn.classList.add('open');
+        body.classList.add('open');
+      }
     }
-  }
-</script>
+  </script>
 
 </body>
+
 </html>
